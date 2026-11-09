@@ -802,20 +802,21 @@ var MENU=[{"k": "lanches", "n": "Lanches", "items": [{"id": "cachorro-quente", "
   addEventListener('keydown',function(e){if(e.key==='Escape'&&bot.classList.contains('open'))openBot(false)});
 
   /* pop-up de saída */
-  var promo=document.getElementById('promo'),shown=false,left=false,t0=performance.now();
+  var promo=document.getElementById('promo'),shown=false,wentWa=false,exiting=false,t0=performance.now();
   function seen(){try{return sessionStorage.getItem('cl_promo')==='1'}catch(_){return false}}
   function showPromo(){if(shown||seen()||bot.classList.contains('open')||!sheet.hidden||performance.now()-t0<8000)return;shown=true;try{sessionStorage.setItem('cl_promo','1')}catch(_){}
     promo.hidden=false;requestAnimationFrame(function(){requestAnimationFrame(function(){promo.classList.add('open')})})}
-  function hidePromo(){promo.classList.remove('open');setTimeout(function(){promo.hidden=true},380)}
+  function hidePromo(){promo.classList.remove('open');setTimeout(function(){promo.hidden=true;if(exiting&&!wentWa){history.go(-2)}},380)}
   document.getElementById('promoX').addEventListener('click',hidePromo);document.getElementById('promoLater').addEventListener('click',hidePromo);
-  document.getElementById('promoGo').addEventListener('click',function(){setTimeout(hidePromo,300)});
+  document.getElementById('promoGo').addEventListener('click',function(){wentWa=true;setTimeout(hidePromo,300)});
   promo.addEventListener('click',function(e){if(e.target===promo)hidePromo()});
   addEventListener('keydown',function(e){if(e.key==='Escape'&&!promo.hidden)hidePromo()});
   document.addEventListener('mouseout',function(e){if(!e.relatedTarget&&e.clientY<=8)showPromo()});
-  var ly=scrollY,lt=performance.now(),maxY=0;
-  addEventListener('scroll',function(){var y=scrollY,t=performance.now();maxY=Math.max(maxY,y);var v=(ly-y)/Math.max(1,t-lt);
-    if(matchMedia('(hover: none)').matches&&maxY>1600&&v>2.5&&y<maxY-500)showPromo();ly=y;lt=t},{passive:true});
-  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')left=true;else if(left)showPromo()});
+  /* celular: aparece so quando a pessoa aperta "voltar" para sair do site */
+  try{history.replaceState({clBase:1},'');history.pushState({clGuard:1},'')}catch(_){}
+  addEventListener('popstate',function(e){if(!e.state||!e.state.clBase||exiting)return;exiting=true;
+    if(shown||seen()||bot.classList.contains('open')||!sheet.hidden||performance.now()-t0<8000){history.back();return}
+    try{history.pushState({clGuard:1},'')}catch(_){}showPromo()});
 })();
 </script>
 </html>
