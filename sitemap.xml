@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.cleberlanches.com.br/</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://www.cleberlanches.com.br/</loc><lastmod>2026-11-12</lastmod><priority>1.0</priority></url>
+  <url><loc>https://www.cleberlanches.com.br/blog/</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.cleberlanches.com.br/blog/lanche-de-madrugada-em-belem/</loc><lastmod>2026-11-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.cleberlanches.com.br/blog/hamburguer-artesanal-em-belem/</loc><lastmod>2026-11-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.cleberlanches.com.br/blog/x-tudo-em-belem/</loc><lastmod>2026-11-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.cleberlanches.com.br/blog/sabores-do-para-pizza-com-jambu/</loc><lastmod>2026-11-12</lastmod><priority>0.7</priority></url>
 </urlset>
